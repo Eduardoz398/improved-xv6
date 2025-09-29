@@ -104,3 +104,24 @@ memmove(void *vdst, const void *vsrc, int n)
     *dst++ = *src++;
   return vdst;
 }
+
+
+char *
+strstr(const char *haystack, const char *needle)
+{
+  if (!*needle) {
+    return (char *)haystack;
+  }
+  for (const char *h = haystack; *h; h++) {
+    const char *n = needle;
+    const char *hh = h;
+    while (*hh && *n && *hh == *n) {
+      hh++;
+      n++;
+    }
+    if (!*n) {
+      return (char *)h;
+    }
+  }
+  return 0;
+}
